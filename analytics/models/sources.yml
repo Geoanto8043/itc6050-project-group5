@@ -1,0 +1,39 @@
+version: 2
+
+sources:
+  - name: raw
+    description: >
+      Raw tables loaded by dlt (pipeline.py) from the GitHub REST API.
+      Loaded with write_disposition=replace, so each pipeline run is a
+      full-refresh snapshot of the tracked repositories.
+    database: github_pulse
+    schema: raw
+    tables:
+      - name: repos
+        description: One snapshot row per tracked repository.
+        columns:
+          - name: id
+            description: GitHub's numeric repository id.
+          - name: full_name
+            description: owner/name — matches issues.repo.
+          - name: stars
+            description: Stargazer count at load time.
+          - name: open_issues_count
+            description: GitHub's own open counter (includes PRs).
+      - name: issues
+        description: >
+          Recent issues per repo (up to 300 newest each), pull requests
+          excluded during extraction.
+        columns:
+          - name: id
+            description: GitHub's numeric issue id.
+          - name: repo
+            description: owner/name of the repository the issue belongs to.
+          - name: state
+            description: open or closed.
+          - name: author_login
+            description: GitHub username of the issue author.
+          - name: created_at
+            description: ISO timestamp string; cast in staging.
+          - name: closed_at
+            description: ISO timestamp string; null while the issue is open.

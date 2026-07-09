@@ -1,0 +1,13 @@
+name: analytics
+version: "1.0.0"
+profile: github_pulse
+
+model-paths: ["models"]
+test-paths: ["tests"]
+
+models:
+  analytics:
+    stg_issues:
+      +materialized: view
+    repo_issue_summary:
+      +materialized: table

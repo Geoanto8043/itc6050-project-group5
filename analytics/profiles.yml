@@ -1,0 +1,12 @@
+github_pulse:
+  target: dev
+  outputs:
+    dev:
+      type: postgres
+      host: "{{ env_var('PGHOST', 'localhost') }}"
+      port: "{{ env_var('PGPORT', '5432') | as_number }}"
+      user: "{{ env_var('PGUSER', 'dataeng') }}"
+      password: "{{ env_var('PGPASSWORD', 'dataeng') }}"
+      dbname: "{{ env_var('PGDATABASE', 'github_pulse') }}"
+      schema: analytics
+      threads: 4

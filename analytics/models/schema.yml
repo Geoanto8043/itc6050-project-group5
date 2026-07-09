@@ -1,0 +1,37 @@
+version: 2
+
+models:
+  - name: stg_issues
+    description: >
+      One clean row per issue: timestamps cast, is_closed flag, and
+      days_open (closed issues: created→closed; open issues: created→now).
+      Pull requests were already excluded at extraction.
+    columns:
+      - name: issue_id
+        description: GitHub numeric issue id.
+        tests:
+          - not_null
+      - name: repo
+        description: owner/name of the tracked repository.
+        tests:
+          - not_null
+      - name: state
+        description: Lifecycle state straight from the API.
+        tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['open', 'closed']
+
+  - name: repo_issue_summary
+    description: >
+      Mart — one row per repository: issue counts, average days to close
+      (closed issues only), and the five most prolific issue authors.
+    columns:
+      - name: repo
+        tests:
+          - not_null
+          - unique
+      - name: total_issues
+        tests:
+          - not_null
