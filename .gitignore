@@ -1,0 +1,23 @@
+# environment & secrets
+.env
+.venv/
+
+# dlt state
+.dlt/secrets.toml
+_storage/
+
+# dbt artifacts
+analytics/target/
+analytics/dbt_packages/
+analytics/logs/
+logs/
+
+# local databases
+*.duckdb
+
+# OS / editor
+.DS_Store
+__pycache__/
+*.pyc
+analytics/.user.yml
+analytics/.user.yml
