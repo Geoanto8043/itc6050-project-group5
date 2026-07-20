@@ -2,10 +2,6 @@
 .env
 .venv/
 
-# dlt state
-.dlt/secrets.toml
-_storage/
-
 # dbt artifacts
 analytics/target/
 analytics/dbt_packages/
