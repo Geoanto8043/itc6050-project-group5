@@ -126,7 +126,7 @@ streamlit run dashboard.py
 ```
 
 ## Repository structure
-
+```text
 ├── pipeline.py            dlt ingestion
 ├── dashboard.py           Streamlit dashboard
 ├── requirements.txt       Virtual environment setup
@@ -141,7 +141,7 @@ streamlit run dashboard.py
     │   └── repo_issue_summary.sql
     └── tests/
         └── assert_issue_unique_per_repo.sql
-
+```
 ## Data quality
 
 The project includes automated dbt tests to verify that:
